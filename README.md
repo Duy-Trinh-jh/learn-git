@@ -181,3 +181,25 @@ Khác nhau:
 Cả hai đều dùng để hợp nhất code tại 2 nhánh lại với nhau. Do đó tùy vào mục đích ta sử dụng git rebase nếu như muốn các sự thay đổi thuộc về branch của mình luôn luôn là mới nhất và có thể log một cách có hệ thống dễ nhìn, dễ tracking sau này. Hoặc ta sử dụng git merge nếu muốn sắp xếp các commit theo mặc định.
 
 Để giữ lại các commit ở nhánh phụ trên nhánh master khi tiến hành hợp nhất 2 nhánh, chúng ta có thể rebase nhánh master ở nhánh phụ trước rồi sau đó merge nhánh phụ vào nhánh master. Điều này giúp tránh mất đi các commit trên nhánh phụ ở nhánh master.
+
+## Exercise
+### Description: We have 2 big branch call master (to hold test features for test site) & production. 
+### Exercise 1: (Ap & Ev) When we are creating new feature, what branch should we based on and why?
+- Khi chúng ta xây dựng một feature mới, ta nên dựa trên nhánh master bởi vì nhánh master sẽ chứa test features để ta có thể test kỹ feature trước khi merge qua nhánh master và sau đó tính năng ấy sẽ an toàn để merge vào nhánh production để deploy.
+```
+git checkout master
+git branch <new-feature>
+git checkout <new-feature>
+```
+### Exercise 2: (Ap) If we have a feature branch that haven't been merged to production and that branch have bug, what course of action are you going to do with Git to before resolving the bug?
+- Ta checkout nhánh của feature đó rồi sau đó ta sẽ tạo một branch mới để fix bug từ nhánh hiện tại.
+
+### Exercise 3: (Ap & Ev) If someone accidentally merge a feature (feature/delete-user) onto production and have a list of commitId ended with (0492978, fc9348c, k101100), then another commit (a1fsas8) is added on top of the production branch. How do we remove that merged feature?
+- Ta sẽ sử dụng git revert để xử lý
+```
+git checkout production
+git revert -m 1 a1fsas8
+git revert -m 1 k101100
+git revert -m 1 fc9348c
+git revert -m 1 0492978
+```
