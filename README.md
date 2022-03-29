@@ -80,3 +80,46 @@ $ git reflog
 # ví dụ: git reset --hard HEAD@{2}
 $ git reset --hard <commit>
 ```
+
+## Branch
+
+### Git command for branch
+Lệnh sẽ thực hiện liệt kê tất cả các branch (nhánh):
+```
+git branch hoặc git branch -a
+```
+Lệnh này có tác dụng chuyển sang một branch khác:
+```
+git checkout feature
+```
+Lệnh này sẽ tạo hoặc chuyển sang một nhánh mới:
+```
+git checkout -b new_feature
+```
+
+### Các lỗi có thể xảy ra với Branch:
+- Đặt sai tên branch, ta có thể rename lại tên branch:
+```
+git branch -m <tên branch sau khi đổi>
+```
+- Chuyển sang nhánh khác nhưng chưa sao lưu lại công việc đang làm dở có thể làm mất code, ta có thể xử lý như sau:
+```
+# Tạm thời lưu lại các phần công việc còn đang làm dở
+$ git stash -u
+# Chuyển sang một branch khác và làm việc
+$ git checkout -b other-branch
+$ git add <các file cần thiết>
+$ git commit -m "commit message"
+# Trở về branch cũ
+$ git checkout origin-branch
+# Lấy lại các nội dung công việc đang làm dở trước đó
+$ git stash pop
+```
+- Lỡ tay xóa nhầm đi branch, ta có thể giải quyết như sau:
+```
+# Đầu tiên là xem lại toàn bộ lịch sử commit
+$ git reflog
+# Từ các commit này, chọn rồi tạo branch mới
+# ví dụ: git branch new-branch HEAD@{2}
+$ git branch <tên branch> <commit_id>
+```
