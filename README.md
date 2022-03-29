@@ -129,12 +129,10 @@ $ git branch <tên branch> <commit_id>
 - Git add: dùng để thêm một hoặc nhiều file thay đổi đến stage/index ở bên trong thư mục làm việc.
 ```
 git add <filename> or git add .
-
 ```
 - Git push / git pull: Push hoặc Pull là các thay đổi đến remote. Nếu bạn đã add và committed các thay đổi rồi bạn muốn đẩy nó lên hoặc remote của bạn đã update thì bạn sẽ apply tất cả thay đổi đó trên code của mình.
 ```
 git pull <:remote:> <:branch:> and git push <:remote:> <:branch:>
-
 ```
 - Git stack: dùng để lưu các thay đổi mà bạn không muốn commit ngay lập tức. 
 ```
@@ -158,3 +156,15 @@ git merge <branchname>
 git rebase  <branchname>  
 ```
 
+## Conflict
+
+### Nguyên nhân gây ra conflicts
+- Công việc của bạn với người khác cùng thay đổi các file giống nhau, việc bạn chỉnh sửa file sẽ ảnh hưởng trực tiếp tới người đó. Do đó cần thảo luận với đồng nghiệp về phạm vi công việc cho nó rõ ràng để loại bỏ sự chồng chéo.
+- Do cách tổ chức nhánh hoặc quy trình làm việc. Do đó khi làm việc thì cần tạo mới một branch cho bản thân và xác định rõ công việc của mình
+- Xung đột với chính mình do repo trên máy chưa được cập nhật theo cái mới nhất, có thể do có người nào đó làm việc chung thay đổi trên branch làm cho repo trên máy bị lỗi thời. Hoặc có thể bạn đang làm việc trên quá nhiều nhánh mà chưa hợp nhất sự thay đổi trên các nhánh lại thành một nhánh.
+
+### Cách giải quyết conflict và hạn chế conflict
+- Chỉnh sửa nội dung trên file mà nó dẫn tới xung đột, sau đó thực hiện add, commit cho file đó.
+- Nên commit thường xuyên: không nên commit một lượng lớn file mà hãy chia nhỏ để commit để có thể dễ dàng giải quyết conflict
+- Trước khi làm việc hoặc commit cần pull những thay đổi từ github về
+- Nên tách từng feature thành từng branch riêng biệt để người làm hạn chế gây conflict với nhau.
