@@ -123,3 +123,38 @@ $ git reflog
 # ví dụ: git branch new-branch HEAD@{2}
 $ git branch <tên branch> <commit_id>
 ```
+
+## Basic git command
+
+- Git add: dùng để thêm một hoặc nhiều file thay đổi đến stage/index ở bên trong thư mục làm việc.
+```
+git add <filename> or git add .
+
+```
+- Git push / git pull: Push hoặc Pull là các thay đổi đến remote. Nếu bạn đã add và committed các thay đổi rồi bạn muốn đẩy nó lên hoặc remote của bạn đã update thì bạn sẽ apply tất cả thay đổi đó trên code của mình.
+```
+git pull <:remote:> <:branch:> and git push <:remote:> <:branch:>
+
+```
+- Git stack: dùng để lưu các thay đổi mà bạn không muốn commit ngay lập tức. 
+```
+# Tạm thời lưu lại các phần công việc còn đang làm dở
+$ git stash -u
+# Chuyển sang một branch khác và làm việc
+$ git checkout -b other-branch
+$ git add <các file cần thiết>
+$ git commit -m "commit message"
+# Trở về branch cũ
+$ git checkout origin-branch
+# Lấy lại các nội dung công việc đang làm dở trước đó
+$ git stash pop
+```
+- Git merge: dùng merge branch khác vào branch hiện tại mình đang làm:
+```
+git merge <branchname>
+```
+- Git rebase: dùng để nhập một branch đã gần hoàn thiện vào branch gốc (branch master) một cách tuyến tính
+```
+git rebase  <branchname>  
+```
+
