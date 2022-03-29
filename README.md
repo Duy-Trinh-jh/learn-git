@@ -195,11 +195,9 @@ git checkout <new-feature>
 - Ta checkout nhánh của feature đó rồi sau đó ta sẽ tạo một branch mới để fix bug từ nhánh hiện tại.
 
 ### Exercise 3: (Ap & Ev) If someone accidentally merge a feature (feature/delete-user) onto production and have a list of commitId ended with (0492978, fc9348c, k101100), then another commit (a1fsas8) is added on top of the production branch. How do we remove that merged feature?
-- Ta sẽ sử dụng git revert để xử lý
+- Ta sẽ sử dụng git revert để revert lại commit merge, sau đó dùng git push để push commit revert lên branch production
 ```
 git checkout production
 git revert -m 1 a1fsas8
-git revert -m 1 k101100
-git revert -m 1 fc9348c
-git revert -m 1 0492978
+git push
 ```
