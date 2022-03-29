@@ -168,3 +168,16 @@ git rebase  <branchname>
 - Nên commit thường xuyên: không nên commit một lượng lớn file mà hãy chia nhỏ để commit để có thể dễ dàng giải quyết conflict
 - Trước khi làm việc hoặc commit cần pull những thay đổi từ github về
 - Nên tách từng feature thành từng branch riêng biệt để người làm hạn chế gây conflict với nhau.
+
+## Merge và Rebase
+
+### So sánh Merge và Rebase
+Giống: Đều dùng để hợp nhất code tại 2 nhánh lại với nhau
+Khác nhau: 
+- git merge khi gộp vào vẫn giữ nguyên sự sắp xếp các commit theo thứ tự thời gian của các commit trên các nhánh. lệnh merge sẽ so sánh nội dung 3 commit: commit ở điểm rẽ nhánh giữa 2 nhánh cần merge và 2 commit cuối của 2 nhánh cần gộp. Sau đó nó sẽ gộp lại thành một commit tổng hợp đã được xử lý xung đột (nếu có). Git merge làm những nhánh đang tồn tại không bị thay đổi.
+- git rebase sẽ đưa toàn bộ commit của nhánh cần merge làm base và nếu có xung đột xảy ra thì sẽ tiến hành sửa đổi lịch sử commit tại commit gây ra xung đột, sau đó nối tiếp các commit kế tiếp của nhánh hiện tại. Git rebase làm cho lịch sử commit có dạng tuyến tính xuyên suốt từ đầu đến hiện tại.
+
+### Kết hợp Merge và Rebase
+Cả hai đều dùng để hợp nhất code tại 2 nhánh lại với nhau. Do đó tùy vào mục đích ta sử dụng git rebase nếu như muốn các sự thay đổi thuộc về branch của mình luôn luôn là mới nhất và có thể log một cách có hệ thống dễ nhìn, dễ tracking sau này. Hoặc ta sử dụng git merge nếu muốn sắp xếp các commit theo mặc định.
+
+Để giữ lại các commit ở nhánh phụ trên nhánh master khi tiến hành hợp nhất 2 nhánh, chúng ta có thể rebase nhánh master ở nhánh phụ trước rồi sau đó merge nhánh phụ vào nhánh master. Điều này giúp tránh mất đi các commit trên nhánh phụ ở nhánh master.
