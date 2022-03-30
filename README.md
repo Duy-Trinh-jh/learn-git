@@ -52,31 +52,30 @@ How to write good commit message:
 - Do not think your code is self-explanatory
 - Follow the commit convention defined by your team
 
-### Các lỗi có thể xảy ra với commit:
-- Viết sai message trong commit, cách sửa lỗi ta phải sử dụng -amend:
+### List of posible issues when a commit is broken:
+- Wrong commit's message, we can use -amend to retype message:
 ```
 git commit -amend
 ```
-- commit sai mà người khác đã pull về và ta muốn xóa commit đó:
+- Commit wrong file but your teammate pulled it and we want to remove this commit:
 ```
-# commit_hash là mã commit
-git revert <commit_hash>
+git revert <commit-id>
 ```
-- Lỡ commit nhầm sang một branch khác
+- Commit wrong branch
 ```
-#Đầu tiên là tạo một branch khác chứa trạng thái mà ta đã commit
+# Create new branch has this commit from wrong branch
 $ git branch other-branch
-#Đưa HEAD, index của master về 1 commit trước đó
+# Reset HEAD, index of branch to previous commit
 $ git reset --hard HEAD~
-#Check out sang branch có commit trước đó
+# Check out to new branch
 $ git checkout other-branch
 ```
-- Lỡ tay xóa nhầm commit quan trọng, cách xử lý:
+- Someone accidentally remove a important commit:
 ```
-# Đầu tiên là xem lại toàn bộ lịch sử commit
+# View commit history
 $ git reflog
-# Từ đó chọn commit muốn phục hồi và khôi phục lại
-# ví dụ: git reset --hard HEAD@{2}
+# Choose commit that you want to restore
+# Ex: git reset --hard HEAD@{2}
 $ git reset --hard <commit>
 ```
 
