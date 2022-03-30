@@ -197,13 +197,44 @@ git checkout master
 git branch <new-feature>
 git checkout <new-feature>
 ```
+- If new feature depend on other feature, we can create new branch base on this branch feature.
+```
+git checkout <another-branch>
+git branch <new-feature>
+git checkout <new-feature>
+```
+- If new feature depend on other features we can create new branch base on one of them and merge the rest of branch.
+```
+git checkout <first-branch>
+git branch <new-feature>
+git checkout <new-feature>
+git merge <second-feature>
+```
+- If new feature depend on other feature but new feature only need some code from this, we can create new branch base on this branch and delete other code and commit the changes.
+```
+git checkout <feature>
+git branch <new-feature>
+#remove other code
+git add .
+git commit -m 'only keep the xxx module on new feature'
+git push
+```
 ### Exercise 2: (Ap) If we have a feature branch that haven't been merged to production and that branch have bug, what course of action are you going to do with Git to before resolving the bug?
-- We checkout branch feature and then create new branch to fix bug.
-
+- We checkout branch feature and then create new branch to fix bug. If we need some code from other branch, we checkout this branch and give the paths to the specific files that we want to add to branch fix bug.
+```
+git checkout feature
+git checkout -b "feature/fix-bug"
+git checkout <other-branch> <paths>
+git commit -m "Get some code from other branch"
+```
 ### Exercise 3: (Ap & Ev) If someone accidentally merge a feature (feature/delete-user) onto production and have a list of commitId ended with (0492978, fc9348c, k101100), then another commit (a1fsas8) is added on top of the production branch. How do we remove that merged feature?
-- We checkout branch production and then we use git revert command to revert the commit merge and then we use git push to push this change to branch production.
+- We checkout branch production and then we use git revert command to revert the commit merge and then we use git push to push this change to branch production. When we want to merge feature again onto production, we revert the revert commit and then merge feature.
 ```
 git checkout production
 git revert -m 1 a1fsas8
+git push
+#when we want to re merge feature onto production
+git revert -m 1 <revert-commit-id>
+git merge feature/delete-user
 git push
 ```
