@@ -224,8 +224,11 @@ git push
 ```
 git checkout feature
 git checkout -b "feature/fix-bug"
+#if we want to add some code from other branch, we can try this solution for add the specific files:
 git checkout <other-branch> <paths>
 git commit -m "Get some code from other branch"
+#or we add all code from this branch
+git merge <other-branch>
 ```
 ### Exercise 3: (Ap & Ev) If someone accidentally merge a feature (feature/delete-user) onto production and have a list of commitId ended with (0492978, fc9348c, k101100), then another commit (a1fsas8) is added on top of the production branch. How do we remove that merged feature?
 - We checkout branch production and then we use git revert command to revert the commit merge and then we use git push to push this change to branch production. When we want to merge feature again onto production, we revert the revert commit and then merge feature.
