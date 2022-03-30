@@ -241,3 +241,9 @@ git revert -m 1 <revert-commit-id>
 git merge feature/delete-user
 git push
 ```
+
+- We use git reset to reset history commit of porduction.
+```
+git checkout production
+git reset --hard a1fsas8
+```
